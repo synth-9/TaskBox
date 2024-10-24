@@ -116,4 +116,4 @@ Contributions are welcome! Please open an issue or submit a pull request if you 
 
 ## Contact
 
-For any questions, feel free to reach out or open an issue in the [GitHub repository](https://github.com/your-username/taskbox).
+For any questions, feel free to reach out or open an issue in the [GitHub repository](https://github.com/synth-9/taskbox).
