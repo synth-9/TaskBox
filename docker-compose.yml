@@ -1,0 +1,35 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: taskbox_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  high_priority_consumer:
+    build: .
+    container_name: taskbox_high_priority_consumer
+    depends_on:
+      - redis
+    environment:
+      - QUEUE_NAME=high_priority_queue
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - ./scripts:/app/scripts
+
+  low_priority_consumer:
+    build: .
+    container_name: taskbox_low_priority_consumer
+    depends_on:
+      - redis
+    environment:
+      - QUEUE_NAME=low_priority_queue
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - ./scripts:/app/scripts
+
+volumes:
+  redis_data:
